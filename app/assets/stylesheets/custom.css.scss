@@ -1,2 +1,19 @@
 @import 'semantic-ui';
 //@import "bootstrap";
+
+.text-container {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.chatbox{
+  height: 450px;
+  margin-right: 40px !important;
+}
+.custom-container{
+  margin-top: 5% !important;
+}
+.move-container{
+  margin-top: 5% !important;
+}

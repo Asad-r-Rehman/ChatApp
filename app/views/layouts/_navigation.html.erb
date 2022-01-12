@@ -9,11 +9,13 @@
         Account <i class="dropdown icon"></i>
         <div class="menu">
             <a class="item">Log in</a>
-            <a class="item">Log out</a>
             <a class="item">Sign up</a>
         </div>
     </div>
-    <div class="item">
-        <div class="ui primary button">Sign Up</div>
-    </div>
+  <% if current_user.present? %>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete , class: "ui red button" %>
+    <% end %>
+<!--    <div class="item">-->
+<!--        <div class="ui primary button">Sign Up</div>-->
+<!--    </div>-->
 </div>

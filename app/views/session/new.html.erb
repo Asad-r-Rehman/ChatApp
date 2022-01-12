@@ -1,2 +1,10 @@
-<h1>Session#chatroom</h1>
-<p>Find me in app/views/session/chatroom.html.erb</p>
+<h1 class="ui center aligned medium icon header">
+  <i class="circular coffee orange icon"></i>
+  Say Something
+</h1>
+
+<h1 class="ui center aligned medium icon header">Welcome to ChitChat app</h1>
+<div class="ui center aligned medium icon header">
+<%= link_to "Sign in", new_user_session_path, :method => :get , class: "ui red button move-container" %>
+<%= link_to "Sign up", new_user_registration_path, :method => :get , class: "ui orange button move-container" %>
+</div>
