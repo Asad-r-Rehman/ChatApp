@@ -11,12 +11,14 @@
   </head>
 
   <body>
-
     <div class="ui small inverted menu">
       <div class="ui container">
+        <%if current_user.present? %>
         <%= render partial: "layouts/navigation" %>
+          <% end %>
       </div>
     </div>
+    <%= render partial: "layouts/logo_theme" %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
