@@ -1,63 +1,24 @@
- <div class="text-container">
-    <div class="ui fluid raised card chatbox">
-      <div class="content">
+<div class="ui card">
+  <div class="content">
+    <div class="header">Users</div>
+  </div>
+  <div class="content">
+    <div class="ui small feed">
+      <div class="event">
+        <div class="content">
+          <div class="summary">
+            <% @users.each do |user|  %>
+              <% debugger %>
+              <tr>
+                <th><% user.name %></th>
+                <th><%= user.email %></th>
+              </tr>
+            <% end %>
 
-        <div class="twelve wide column">
-          <div class="ui feed">
-            <h3 class="ui header">Chat History</h3>
-            <div class="event">
-              <div class="content">
-                <div class="summary">
-                  <a>Elliot Fu</a> added <a>Jenny Hess</a> as a friend
-                </div>
-              </div>
-            </div>
-            <div class="event">
-              <div class="content">
-                <div class="summary">
-                  <a>Stevie Feliciano</a> added <a>Elliot Fu</a> as a friend
-                </div>
-              </div>
-            </div>
-            <div class="event">
-              <div class="content">
-                <div class="summary">
-                  <a>Helen Troy</a> added <em>Christian Rocha</em> as a friend
-                </div>
-              </div>
-            </div>
-            <div class="event">
-              <div class="content">
-                <div class="summary">
-                  <a>Christian Rocha</a> signed up for the site.
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-      <div class="extra content">
-        <form class="ui reply form">
-          <div class="field">
-            <div class="ui fluid icon input">
-              <input type="text" placeholder="Enter Your Message . . . ." >
-              <i class="bordered inverted orange edit icon"></i>
-            </div>
-          </div>
-        </form>
-      </div>
+
     </div>
-    <div class="four wide column">
-          <div class="ui inverted vertical menu">
-            <a class="active item">
-              Online
-            </a>
-            <a class="item">
-              Messages
-            </a>
-            <a class="item">
-              Friends
-            </a>
-          </div>
-       </div>
   </div>
+</div>
