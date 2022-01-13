@@ -7,6 +7,7 @@ class MessageController < ApplicationController
     user = current_user.id
     chatroom = params[:chatroom]
     @message = Message.create(body: params[:message][:body], user_id: user, chatroom_id: chatroom)
+    ActionCable.server.broadcast "chatroom_channel" , obj: @message.body
     # message.user_id = user
     # message.chatroom_id = chatroom
     # message.save
