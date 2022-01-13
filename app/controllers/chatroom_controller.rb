@@ -6,7 +6,9 @@ class ChatroomController < ApplicationController
   end
 
   def new
+    @msg = Message.new
     @chatroom = Chatroom.find_by(id: params[:format])
+    @message = @chatroom.messages.all
     @chatroom_users = @chatroom.users.all
   end
 

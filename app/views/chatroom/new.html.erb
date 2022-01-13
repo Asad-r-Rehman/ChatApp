@@ -4,46 +4,37 @@
       <div class="twelve wide column">
         <div class="ui feed">
           <h3 class="ui header">Chat History</h3>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <a>Elliot Fu</a> added <a>Jenny Hess</a> as a friend
+          <% @message.each do |message| %>
+            <div class="event">
+              <div class="content">
+                <div class="summary">
+                  <h4 class="messanger-name">
+                    <%= message.user.name %></h4> ~>
+                  <%= message.body %>
+                    <%= link_to '<div><i class="fa fa-window-close msg-text" aria-hidden="true"></i></div>'.html_safe, message_path(message),
+                                method: :delete,
+                                data: { confirm: 'Are you sure?' }  %>
+                  <%#= link_to '', chatroom_path(message), method: :destroy do %>
+                  <!--                    <div><i class="fa fa-window-close msg-text" aria-hidden="true"></i></div>-->
+                  <%# end %>
+
+                </div>
               </div>
             </div>
-          </div>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <a>Stevie Feliciano</a> added <a>Elliot Fu</a> as a friend
-              </div>
-            </div>
-          </div>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <a>Helen Troy</a> added <em>Christian Rocha</em> as a friend
-              </div>
-            </div>
-          </div>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <a>Christian Rocha</a> signed up for the site.
-              </div>
-            </div>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
     <div class="extra content">
-      <form class="ui reply form">
+      <%= form_for(@msg, html: { class: "ui reply form", role: "form" }, url: "/message") do |f| %>
         <div class="field">
           <div class="ui fluid icon input">
-            <input type="text" placeholder="Enter Your Message . . . .">
-            <i class="bordered inverted orange edit icon"></i>
+            <%= f.text_field :body %>
+            <%= f.button '<i class="bordered inverted orange edit icon"></i>'.html_safe %>
+            <%= hidden_field_tag(:chatroom, @chatroom.id) %>
           </div>
         </div>
-      </form>
+      <% end %>
     </div>
   </div>
   <div class="four wide column">
@@ -52,18 +43,16 @@
         Members-List
       </a>
       <% @chatroom_users.each do |member| %>
-
         <div class="align-container">
           <a class="item">
             <div><%= member.name %></div>
             <div>
-              <%= link_to chatroom_path(member , @chatroom), method: :put do %>
+              <%= link_to chatroom_path(member, @chatroom), method: :put do %>
                 <i class="fa fa-trash"></i>
               <% end %>
             </div>
           </a>
         </div>
-
       <% end %>
     </div>
   </div>
