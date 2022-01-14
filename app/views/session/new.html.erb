@@ -1,6 +1,17 @@
-<h1 class="ui center aligned medium icon header">Welcome to ChitChat app</h1>
-<div class="ui center aligned medium icon header">
-  <% unless current_user.present? %>
+ <% if current_user.present? %>
+   <h1 class="ui center aligned medium icon header">Welcome <%= current_user.name.capitalize %></h1>
+   <ul>
+      <h4>Guide</h4>
+      <li>You can select one or more app users my using check-box</li>
+      <li>When you create group you automatically add as an admin of this group and diplay your as an admin in table</li>
+      <li>You can chat with you group when you click on group name</li>
+      <li>You can also delete any member from group in next section</li>
+      <li>When admin is removed group is also deleted . else only those members are deleted that clicked and group remains active</li>
+      <li>If you select group name that's fine else group name is displayed as "no name" by default</li>
+    </ul>
+  <% else %>
+   <h1 class="ui center aligned medium icon header">Welcome to ChitChat app</h1>
+  <div class="ui center aligned medium icon header">
     <%= link_to "Sign in", new_user_session_path, :method => :get, class: "ui red button move-container" %>
     <%= link_to "Sign up", new_user_registration_path, :method => :get, class: "ui orange button move-container" %>
   <% end %>
