@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   resources :chatroom
   resources :message
 
-  # get "ChatChennel" , to: "chatroom#new"
   get "chatArea" , to: "chatroom#chatarea"
-  # get "createChatRoom", to: "chatroom#index"
   root "session#new"
   mount ActionCable.server, at: '/cable'
 end

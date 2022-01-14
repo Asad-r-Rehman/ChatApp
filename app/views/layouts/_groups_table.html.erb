@@ -1,0 +1,28 @@
+<div class="group-list-container">
+  <table class="ui compact celled definition table">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Members count</th>
+      <th>Delete Group</th>
+      <th>Admin Rights</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @chatroom.each do |element| %>
+      <tr>
+        <td class="collapsing">
+        </td>
+        <td><%= link_to element.description, new_chatroom_path(element) %></td>
+        <td><%= element.users.all.count %></td>
+        <td><%= link_to chatroom_path(element), method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </td>
+        <td><%= ChatroomUser.find_by(user_id: current_user.id , chatroom_id: element.id ).admin_role %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

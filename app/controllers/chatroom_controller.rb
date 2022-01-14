@@ -1,4 +1,5 @@
 class ChatroomController < ApplicationController
+  # after_action
   def index
     @users = User.all
     user = current_user
@@ -17,6 +18,9 @@ class ChatroomController < ApplicationController
     chatroom = Chatroom.find(params[:format])
     chatroom.users.delete(user)
   end
+  # def admin_right
+  #   admin  current_user
+  # end
 
   def destroy
     @chatroom = Chatroom.find(params[:id])
@@ -27,7 +31,12 @@ class ChatroomController < ApplicationController
   def create
     if params[:group_members].present?
       params[:group_members].push(current_user.id)
-      @chatroom = Chatroom.create(description: params[:group_title].empty? ? "No Name" : params[:group_title])
+      group_name = params[:group_title].empty? ? "No Name" : params[:group_title]
+      @chatroom = Chatroom.new
+      @chatroom.description = group_name
+      if @chatroom.save!
+        ChatroomUser.create(user_id: current_user.id , chatroom_id: @chatroom.id, admin_role: true )
+      end
       params[:group_members].each do |ids|
         @chatroom.chatroom_users.create(user_id: ids)
         flash[:alert] = "Successfully Created"
@@ -35,6 +44,5 @@ class ChatroomController < ApplicationController
     else
       flash[:alert] = "Please add at lease one member"
     end
-    redirect_to chatroom_index_path
   end
 end

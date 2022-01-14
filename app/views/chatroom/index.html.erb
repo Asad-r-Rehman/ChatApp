@@ -1,85 +1,61 @@
-<div class="main">
-  <div class="chatbox">
-    <div class="ui card">
-      <div class="content">
-        <div class="header">ChitCat-Users</div>
-      </div>
-      <i class="icon-trash"></i>
-      <% @users.each do |user| %>
-        <div class="content ">
-          <div class="ui small feed">
-            <div class="event">
-              <div class="content">
-                <div class="summary">
-                  <div class="checbox-container">
-                    <input type="checkbox" , value=<%= user.id %> , class="test"></div>
-                  <div class="user-container">
-                    <h4><%= user.name.titleize %></h4>
-                    <p><%= user.email %></p>
+  <div class="main">
+    <div class="chatbox">
+      <div class="ui card">
+        <div class="content">
+          <div class="header">ChitCat-Users</div>
+        </div>
+        <i class="icon-trash"></i>
+        <% @users.each do |user| %>
+          <div class="content ">
+            <div class="ui small feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <div class="checbox-container">
+                      <input type="checkbox" , value=<%= user.id %> , class="test"></div>
+                    <div class="user-container">
+                      <h4><%= user.name.titleize %></h4>
+                      <p><%= user.email %></p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        <% end %>
+        <div class="group-create-container">
+          <%= text_field_tag 'name', nil, placeholder: 'Enter Group Name', class: 'input-resize' %>
+          <%= link_to "Create", "", class: "ui orange submit button create-group" %>
         </div>
-      <% end %>
-      <div class="group-create-container">
-        <%= text_field_tag 'name', nil, placeholder: 'Enter Group Name', class: 'input-resize' %>
-        <%= link_to "Create", "", class: "ui orange submit button create-group" %>
       </div>
     </div>
+    <%= render "layouts/groups_table" %>
   </div>
-  <div>
-    <table class="ui celled striped table">
-      <thead>
-      <tr>
-        <th colspan="3">
-          Groups
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @chatroom.each do |element| %>
-        <tr>
-          <td class="collapsing">
-            <i class="folder icon"></i>
-            <%= link_to element.description, new_chatroom_path(element) %>
-          </td>
-          <td><%= element.users.all.count %></td>
-          <td><%= link_to  chatroom_path(element), method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <i class="fa fa-trash"></i>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
 
-<script>
-    var members = [];
-    $(".test").change(function () {
-        if (members.includes(this.value)) {
-            members.pop(this.value)
-        } else {
-            members.push(this.value)
-        }
-    });
-    $('.create-group').click(function () {
-        var title = $(this).siblings('input').val()
-        $.ajax({
-            url: "/chatroom",
-            type: "post",
-            data: {
-                group_members: members,
-                group_title: title
-            },
-            dataType: "json",
-            success: function (response) {
-            },
-            error: function (response) {
-            }
-        })
-    });
-</script>
+  <script>
+      var members = [];
+      $(".test").change(function () {
+          if (members.includes(this.value)) {
+              members.pop(this.value)
+          } else {
+              members.push(this.value)
+          }
+      });
+      $('.create-group').click(function () {
+          var title = $(this).siblings('input').val()
+          $.ajax({
+              url: "/chatroom",
+              type: "post",
+              data: {
+                  group_members: members,
+                  group_title: title
+              },
+              dataType: "json",
+              success: function (response) {
+                  window.location.reload();
+              },
+              error: function (response) {
+              }
+          })
+      });
+  </script>
