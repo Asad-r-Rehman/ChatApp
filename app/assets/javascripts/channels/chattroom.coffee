@@ -6,4 +6,4 @@ App.chattroom = App.cable.subscriptions.create "ChattroomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-   $(".message-quict").append data.obj
+   $(".message-quict").append data.mod_message

@@ -3,30 +3,17 @@
     <div class="content">
       <div class="twelve wide column">
         <h3 class="ui header">Chat History</h3>
-        <div class="ui feed message-quict">
-          <% @message.each do |message| %>
-            <div class="event">
-              <div class="content">
-                <div class="summary">
-                  <h4 class="messanger-name">
-                    <%= message.user.name %></h4> ~>
-                  <%= message.body %>
-                    <%= link_to '<div><i class="fa fa-window-close msg-text" aria-hidden="true"></i></div>'.html_safe, message_path(message),
-                                method: :delete,
-                                data: { confirm: 'Are you sure?' }  %>
-                  <%#= link_to '', chatroom_path(message), method: :destroy do %>
-                  <!--                    <div><i class="fa fa-window-close msg-text" aria-hidden="true"></i></div>-->
-                  <%# end %>
-
-                </div>
-              </div>
-            </div>
-          <% end %>
+        <div class="message-quict">
+          <div class="ui feed ">
+            <% @message.each do |message| %>
+            <%= render "layouts/message", message: message %>
+              <% end %>
+          </div>
         </div>
       </div>
     </div>
     <div class="extra content">
-      <%= form_for(@msg, html: { class: "ui reply form", role: "form" }, url: "/message" , remote: true) do |f| %>
+      <%= form_for(@msg, html: { class: "ui reply form", role: "form" }, url: "/message", remote: true) do |f| %>
         <div class="field">
           <div class="ui fluid icon input">
             <%= f.text_field :body %>

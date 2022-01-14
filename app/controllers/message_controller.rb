@@ -6,8 +6,8 @@ class MessageController < ApplicationController
   def create
     user = current_user.id
     chatroom = params[:chatroom]
-    @message = Message.create(body: params[:message][:body], user_id: user, chatroom_id: chatroom)
-    ActionCable.server.broadcast "chatroom_channel" , obj: @message.body
+    message = Message.create(body: params[:message][:body], user_id: user, chatroom_id: chatroom)
+    ActionCable.server.broadcast "chatroom_channel" , mod_message: render_message(message)
     # message.user_id = user
     # message.chatroom_id = chatroom
     # message.save
@@ -21,6 +21,10 @@ class MessageController < ApplicationController
 
   private
 
+  def render_message(message)
+    render( partial: 'layouts/message', locals: {message: message})
+
+  end
   def message_params
     params.permit(:body)
   end
