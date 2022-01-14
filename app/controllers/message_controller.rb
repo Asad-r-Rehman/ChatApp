@@ -15,6 +15,7 @@ class MessageController < ApplicationController
 
   def destroy
     message = Message.find_by_id(params[:id])
+    ActionCable.server.broadcast "chatroom_channel" , delete_message: message
     message.destroy
 
   end
@@ -25,6 +26,12 @@ class MessageController < ApplicationController
     render( partial: 'layouts/message', locals: {message: message})
 
   end
+
+  def delete_message(message)
+    render( partial: 'layouts/message', locals: {message: message})
+
+  end
+
   def message_params
     params.permit(:body)
   end
