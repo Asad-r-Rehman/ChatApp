@@ -1,5 +1,6 @@
 @import 'semantic-ui';
 //@import "bootstrap";
+@import "font-awesome";
 
 .text-container {
 
@@ -7,13 +8,48 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.chatbox{
+
+.chatbox {
   height: 450px;
   margin-right: 40px !important;
 }
-.custom-container{
+
+.custom-container {
   margin-top: 5% !important;
 }
-.move-container{
+
+.move-container {
   margin-top: 5% !important;
+}
+
+.custom-box {
+  height: 450px;
+  border: none;
+}
+.summary{
+  display: flex;
+}
+.user-container{
+  margin-left: 20px;
+}
+.input-resize{
+  height: 35px;
+}
+.main{
+  display: flex;
+  margin-left: 22%;
+}
+.align-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.messanger-name{
+  color: crimson;
+}
+.msg-text{
+  margin-left: 20px;
+}
+#message-content{
+  overflow: auto;
 }

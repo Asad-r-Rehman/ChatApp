@@ -1,0 +1,12 @@
+<div class="del_msg_<%= message.id %>">
+  <div class="event">
+    <div class="content">
+      <div class="summary">
+        <h4 class="messanger-name">
+          <%= message.user.name %></h4> ~>
+        <%= message.body %>
+        <%= link_to '<div><i class="fa fa-window-close msg-text" aria-hidden="true"></i></div>'.html_safe, message_path(message), method: :delete %>
+      </div>
+    </div>
+  </div>
+</div>
