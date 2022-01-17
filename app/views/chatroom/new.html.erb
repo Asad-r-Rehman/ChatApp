@@ -1,12 +1,46 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="text-container">
+  <div class="ui fluid raised card chatbox">
+    <div class="content">
+      <div class="twelve wide column">
+        <h3 class="ui header">Chat History</h3>
+        <div class="message-quict">
+          <div class="ui feed ">
+            <% @message.each do |message| %>
+            <%= render "layouts/message", message: message %>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="extra content">
+      <%= form_for(@msg, html: { class: "ui reply form", role: "form" }, url: "/message", remote: true) do |f| %>
+        <div class="field">
+          <div class="ui fluid icon input">
+            <%= f.text_field :body %>
+            <%= f.button '<i class="bordered inverted orange edit icon"></i>'.html_safe %>
+            <%= hidden_field_tag(:chatroom, @chatroom.id) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="four wide column">
+    <div class="ui inverted vertical menu">
+      <a class="active item">
+        Members-List
+      </a>
+      <% @chatroom_users.each do |member| %>
+        <div class="align-container">
+          <a class="item">
+            <div><%= member.name %></div>
+            <div>
+              <%= link_to chatroom_path(member, @chatroom), method: :put do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            </div>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

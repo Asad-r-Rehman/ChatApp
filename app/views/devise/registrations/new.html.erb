@@ -6,19 +6,11 @@
       <div class="column">
         <div class="ui form">
           <div class="field">
-            <label>First Name</label>
+            <label>Full Name</label>
             <div class="ui left icon input">
-              <%= f.text_field :first_name, autofocus: true, placeholder: "First Name ..." %>
+              <%= f.text_field :name, autofocus: true, placeholder: "Full Name ..." %>
               <i class="user icon"></i>
             </div>
-          </div>
-        </div>
-        <br>
-        <div class="field">
-          <label>Last Name</label>
-          <div class="ui left icon input">
-            <%= f.text_field :last_name, placeholder: "Last Name ..." %>
-            <i class="user icon"></i>
           </div>
         </div>
         <br>
@@ -49,12 +41,12 @@
         <%= f.submit "Sign up" ,class: "ui blue submit button orange"%>
       </div>
 <% end %>
-    <div class="middle aligned column">
-        <%= link_to "Log in", new_user_session_path, :method => :get , class: "ui blue submit big button red" %>
-    </div>
-   </div>
+<div class="middle aligned column">
+  <%= link_to "Log in", new_user_session_path, :method => :get , class: "ui blue submit big button red" %>
+</div>
+</div>
 
-    <div class="ui vertical divider">
-      Or
-    </div>
-  </div>
+<div class="ui vertical divider">
+  Or
+</div>
+</div>
